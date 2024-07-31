@@ -1,3 +1,9 @@
+# code share
+
+https://demo.firepad.io/#emeXo71V5n
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -44,3 +50,76 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+
+
+
+interface Props {
+  foo?: string,
+  bar?: string,
+}
+
+
+const defaultProps = {
+  foo: 'hello',
+  bar: 'world',
+}
+
+const Component: FC<Props> = (props) => {
+  const propsWithDefaults = {
+    ...defaultProps,
+    ...props,
+  }
+
+  const { foo, bar } = propsWithDefaults;
+
+  console.log(foo.toUpperCase()) // Allowed, because it's definitely a string
+}
+
+
+
+
+interface CartItem {
+    price: number;
+    id: number;
+    name: string;
+    qty: number;
+}
+
+interface Props {
+    item: CartItem
+    children?: React.ReactNode
+}
+
+const Cart: React.FC<Props> = (props)  => {
+    return (
+        <>
+        <h2>{props.item.id}</h2>
+        <h2>{props.item.name}</h2>
+        {props.children}
+        </>
+    )
+}
+
+
+const Cart2: React.FC<Props> = ({item: {id, name}})    => {
+    return (
+        <>
+        <h2>{id}</h2>
+        <h2>{name}</h2>
+        </>
+    )
+}
+
+const item : CartItem = {
+id: 1,
+name: 'hi',
+price: 13,
+qty: 5
+}
+
+   
+            <Cart item={item} >
+                <h1>Within CArt</h1>
+                </Cart>
+            <Cart2 item={item} />
