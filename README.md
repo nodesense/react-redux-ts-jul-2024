@@ -2,7 +2,13 @@
 
 https://demo.firepad.io/#emeXo71V5n
 
+```
+ git add .
 
+git push -u origin main
+
+
+ ```
 
 # Getting Started with Create React App
 
@@ -123,3 +129,120 @@ qty: 5
                 <h1>Within CArt</h1>
                 </Cart>
             <Cart2 item={item} />
+
+
+
+OOP
+
+class Calculator {
+  sum: int = 0; // state , local state
+
+  // write unit test case for sum, 
+  add(n: Int) {
+    // sum is mutable
+    this.sum += n // Business logic
+    return this.sum
+  }
+}
+
+calc = new CAlculator()
+
+calc.add(10) // 10
+calc.add(10) // 20
+calc.add(5)
+calc.add(5)
+calc.add(5)
+calc.add(5)
+calc.add(5)
+calc.add(5)
+calc.add(5)
+calc.add(5)
+calc.add(5)
+calc.add(5)
+calc.add(5)
+calc.add(5)
+calc.add(5)
+calc.add(5)
+calc.add(5)
+calc.add(5)
+calc.add(5)
+calc.add(5)
+calc.add(5)
+calc.add(5)
+calc.add(5)
+calc.add(5)
+calc.add(5)
+
+
+---
+
+functional
+// pure function
+// given same argument, always expect same output - predictable
+function add(sum, n) {
+  return sum + n
+}
+
+function addItem(items, item) {
+  return [...items, item]
+}
+
+add(10, 20) // 30
+
+add(10, 20) // 30
+
+add(10, 20) // 30
+
+add(10, 20) // 30
+
+add(10, 20) // 30
+
+add(10, 20) // 30
+
+add(10, 20) // 30
+
+add(10, 20) // 30
+
+add(10, 20) // 30
+
+add(10, 20) // 30
+
+add(10, 20) // 30
+
+add(10, 20) // 30
+
+add(10, 20) // 30
+
+add(10, 20) // 30
+
+add(10, 20) // 30
+
+add(10, 20) // 30
+
+add(10, 20) // 30
+
+add(10, 20) // 30
+
+add(10, 20) // 30
+
+add(10, 20) // 30
+
+add(10, 20) // 30
+
+add(10, 20) // 30
+
+add(10, 20) // 30
+
+add(10, 20) // 30
+
+add(10, 20) // 30
+
+add(10, 20) // 30
+
+add(10, 20) // 30
+
+add(10, 20) // 30
+
+add(10, 20) // 30
+
+add(10, 20) // 30

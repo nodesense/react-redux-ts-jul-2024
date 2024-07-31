@@ -2,6 +2,7 @@ import React, {useReducer, useState, useCallback} from 'react';
 import { CartItemModel } from '../models/CartItemModel';
 import { CartListModel } from '../models/CartListModel';
 import CartList from '../components/CartList';
+import { LanguageContext } from '../../contexts/Language';
 
 // useState for simple get/set
 // useReducer for complex logic
@@ -123,6 +124,17 @@ const Cart = () => {
             </button>
             <CartList items={state.items} dispatch={dispatch} 
                                           updateItemInCart={updateItemInCart} />
+        
+            {/* consuming context value in react component */}
+            <LanguageContext.Consumer>
+                {
+                    (lang) => (
+                        <button >  {lang.checkout} </button>
+                    )
+                    
+                }
+            </LanguageContext.Consumer>
+
         </div>
     )
 }
