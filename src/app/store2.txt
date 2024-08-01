@@ -1,9 +1,41 @@
 import axios from 'axios';
-import {combineReducers, createStore, 
-        applyMiddleware, bindActionCreators} from 'redux';
+import {combineReducers, createStore, applyMiddleware} from 'redux';
 import {thunk} from 'redux-thunk';
 
-console.log("REDUX LEARNING");
+import { configureStore } from '@reduxjs/toolkit'
+
+import { createSlice, Tuple, PayloadAction  } from '@reduxjs/toolkit'
+
+interface ProductInitialState {
+    products: any[];
+    loading: boolean
+}
+
+const INITIAL_STATE: ProductInitialState = {
+    products: [],
+    loading: false
+}
+
+const productSlice = createSlice({
+  name: 'products',
+  initialState: INITIAL_STATE,
+  reducers: {
+    initProducts2(state, action: PayloadAction<any[]>) {
+      state.products = action.payload;
+    },
+    initLoading(state, action: PayloadAction<boolean>) {
+      state.loading = action.payload;
+    },
+  },
+})
+
+
+export const { initProducts2, initLoading } = productSlice.actions
+export default productSlice.reducer
+
+
+
+console.log("REDUX toolkit LEARNING");
 
 // action-types.ts
 
@@ -99,7 +131,7 @@ export const cacheMiddleware = (store:any) => (next: any) =>  (action: any) =>{
 
 //configureStore.ts
 
-export const configureStore = () => {
+export const configureStore2 = () => {
     // a store need more reducers, each reducer manage its own state
     // need to use combineReducer to group reducers into one
     const rootReducer = combineReducers ({
@@ -128,8 +160,32 @@ export const configureStore = () => {
     return store;
 }
 
-const store = configureStore()
-export default store;
+// const store = configureStore2()
+
+const stateFromLocal = JSON.parse(
+    window.localStorage.getItem("REDUX_STATE") as string)
+
+
+console.log("LOCAL STATE FROM STORAGE ", stateFromLocal)
+
+interface STATE {
+    counter: number;
+    product: { products: any[], loading: boolean}
+}
+
+const DEFAULT_STATE:STATE = { counter: 0, product: {products: [], loading: false}}
+
+const preloadedState:STATE = stateFromLocal? stateFromLocal: DEFAULT_STATE;
+ 
+
+export const store = configureStore({
+    reducer: {
+      product: productSlice.reducer,
+      counter: counterReducer as any,
+    },
+    middleware: () => new Tuple(loggerMiddleware, cacheMiddleware, thunk) as any,
+    preloadedState: preloadedState
+  })
 
 // demo.ts
 
@@ -158,14 +214,6 @@ console.log("UPDATED STATE ", store.getState())
 
 store.dispatch(increment(5) as incrementAction)
 console.log("UPDATED STATE ", store.getState())
-
-// bindActionCreators: create a wrapper function that calls action creator
-// and dispatch the action to store.. 
-const incrementDispatch = bindActionCreators(increment, store.dispatch);
-console.log("Dispatch using bind action creators");
-incrementDispatch(2) // the value 2 shall be passed to increment action creator
-                     // action shall be dispatched to reducers
-
 
 // store.dispatch (reset() as resetAction)
 // console.log("UPDATED STATE ", store.getState())

@@ -5,6 +5,8 @@ import { LanguageContext, Tamil, English} from './contexts/Language';
 import Checkout from './cart/pages/Checkout';
 import Products from './cart/pages/Products';
 
+import ReduxCounter from './containers/ReduxCounter';
+
 function App () {
     console.log("App render")
 
@@ -27,11 +29,12 @@ function App () {
                 <button onClick= { () => setLang(English)}>En</button>
                 <button onClick= { () => setLang(Tamil)}>Ta</button>
                 
-               
+                {flag && <ReduxCounter />}
+
                 {flag && <Counter />}
                 
                 {flag && <Cart /> }
-                
+
                 {/* <Counter /> */}
             </LanguageContext.Provider>
 

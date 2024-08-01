@@ -6,13 +6,18 @@ import reportWebVitals from './reportWebVitals';
 
 import App from './app/App';
 
-import './app/store';
+import store from './app/store';
+import { Provider } from 'react-redux';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+// Provide expose store as React context to containers, useDispatch, useSelect hooks
 root.render(
-    <h1 >redux</h1>
+     
+  <Provider store={store}>
+    <App />
+  </Provider>
    
 );
 
