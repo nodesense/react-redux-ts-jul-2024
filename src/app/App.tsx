@@ -6,6 +6,7 @@ import Checkout from './cart/pages/Checkout';
 import Products from './cart/pages/Products';
 
 import ReduxCounter from './containers/ReduxCounter';
+import ReduxProducts from './cart/pages/ReduxProducts';
 
 function App () {
     console.log("App render")
@@ -21,6 +22,8 @@ function App () {
                 <button onClick={ () => setFlag(!flag) }>
                     { flag? "Hide": "Show"  }
                 </button>
+
+                {flag && <ReduxProducts /> }
 
                 {flag && <Products /> }
 
